@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: book
+  namespace: school
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: book
+      release: dev
+
+  template:
+    metadata:
+      labels:
+        app: book
+        release: dev
+
+    spec:
+      containers:
+        - name: book
+          image: tangbao203/book:1
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 7201

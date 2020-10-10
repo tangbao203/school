@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: user
+  namespace: school
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user
+      release: dev
+
+  template:
+    metadata:
+      labels:
+        app: user
+        release: dev
+
+    spec:
+      containers:
+        - name: user
+          image: tangbao203/user:
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 7300

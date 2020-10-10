@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: report
+  namespace: school
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: report
+      release: dev
+
+  template:
+    metadata:
+      labels:
+        app: report
+        release: dev
+
+    spec:
+      containers:
+        - name: report
+          image: tangbao203/report:
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 7200

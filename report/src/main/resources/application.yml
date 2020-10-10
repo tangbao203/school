@@ -1,0 +1,26 @@
+server:
+  port: 7200
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: report
+
+  main:
+    #允许使用相同的服务名
+    allow-bean-definition-overriding: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+
+feign:
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 100
+    connection-timeout: 2
+
+  okhttp:
+    enabled: true

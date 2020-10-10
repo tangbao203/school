@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: message
+  namespace: school
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: message
+      release: dev
+
+  template:
+    metadata:
+      labels:
+        app: message
+        release: dev
+
+    spec:
+      containers:
+        - name: message
+          image: tangbao203/message:
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 7301

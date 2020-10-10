@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: classgrade
+  namespace: school
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: classgrade
+      release: dev
+
+  template:
+    metadata:
+      labels:
+        app: classgrade
+        release: dev
+
+    spec:
+      containers:
+        - name: classgrade
+          image: tangbao203/classgrade:
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 7100
