@@ -21,7 +21,7 @@ rpc:
   #book: book-service.school:7201
   #teaching: teaching-service.school:7101
 
-version: 1.0
+version: 2.0
 
 feign:
   httpclient:

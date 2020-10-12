@@ -1,0 +1,48 @@
+#teaching流浪控制
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: teaching-route
+  namespace: school
+spec:
+  hosts:
+    - student-service
+
+  http:
+    - match:
+        - uri:
+            prefix: /teaching
+
+      route:
+        - destination:
+            host: teaching-service
+            subset: latest
+          weight: 75
+
+        - destination:
+            host: teaching-service
+            subset: v1
+          weight: 25
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: teaching-rule
+  namespace: school
+spec:
+  host: teaching-service
+  trafficPolicy:
+    loadBalancer:
+      simple: RANDOM
+  subsets:
+    - name: v1
+      labels:
+        version: v1
+    - name: latest
+      labels:
+        version: latest
+      trafficPolicy:
+        loadBalancer:
+          simple: ROUND_ROBIN
+
