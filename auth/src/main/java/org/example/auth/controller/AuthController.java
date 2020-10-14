@@ -21,7 +21,7 @@ import java.util.Map;
 public class AuthController {
     private RsaJsonWebKey keyPair;
     private final String KID="jwt_rsa";
-    private final String issuer="auth-service";
+    private final String issuer="auth-service.school";
     private final String subject="test";
 
     AuthController() throws JoseException {
