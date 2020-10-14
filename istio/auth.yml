@@ -8,8 +8,8 @@ spec:
     matchLabels:
       app: student
   jwtRules:
-    - issuer: auth-service
-      jwksUri: http://auth-service:8000/auth/cert
+    - issuer: auth-service.school
+      jwksUri: http://auth-service.school:8000/auth/cert
 
 ---
 apiVersion: security.istio.io/v1beta1
@@ -25,7 +25,7 @@ spec:
   rules:
     - from:
         - source:
-            requestPrincipals: ["auth-service/test"]
+            requestPrincipals: ["auth-service.school/test"]
       to:
         - operation:
             methods: ["GET"]
