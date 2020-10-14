@@ -2,7 +2,7 @@
 用来测试istio流量微服务
 
 ## 简单的构建微服务流程图
-    ![Image text](architecture.png)
+![Image text](architecture.png)
 
 ## 本地构建环境依赖
     1.必须已经在本地安装了 java 、maven 、 docker、 redis 
