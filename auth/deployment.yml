@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: auth
+  namespace: school
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+      release: dev
+
+  template:
+    metadata:
+      labels:
+        app: auth
+        release: dev
+
+    spec:
+      containers:
+        - name: auth
+          image: tangbao203/auth:1
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 7101

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: teacher-service
+  namespace: school
+
+spec:
+  type: ClusterIP
+  selector:
+    app: teacher
+
+  ports:
+    - name: http
+      port: 7001
+      targetPort: 7001

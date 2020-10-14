@@ -37,3 +37,13 @@ spec:
             port:
               number: 7000
             host: student-service
+
+    - match:
+        - uri:
+            prefix: /auth
+
+      route:
+        - destination:
+            port:
+              number: 8000
+            host: auth-service

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: classgrade-service
+  namespace: school
+
+spec:
+  type: ClusterIP
+  selector:
+    app: classgrade
+
+  ports:
+    - name: http
+      port: 7100
+      targetPort: 7100

@@ -18,6 +18,7 @@
         <module>student</module>
         <module>teacher</module>
         <module>common</module>
+        <module>auth</module>
     </modules>
 
     <properties>

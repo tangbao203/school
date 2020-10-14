@@ -1,0 +1,31 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: student-authn-policy
+  namespace: school
+spec:
+  selector:
+    matchLabels:
+      app: student
+  jwtRules:
+    - issuer: auth-service
+      jwksUri: http://auth-service:8000/auth/cert
+
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: student-authz-policy
+  namespace: school
+spec:
+  selector:
+    matchLabels:
+      app: student
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            requestPrincipals: ["auth-service/test"]
+      to:
+        - operation:
+            methods: ["GET"]
