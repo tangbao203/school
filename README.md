@@ -1,5 +1,6 @@
 # school
-用来测试istio流量微服务
+在使用前已经假设你已经搭建了k8s环境、并且了解如何使用它, istio环境搭建可以参考官方文档.
+这个项目里构建微服务是用来测试 istio 的流量已经 jwt 认证功能
 
 ## 简单的构建微服务流程图
 ![Image text](architecture.png)
