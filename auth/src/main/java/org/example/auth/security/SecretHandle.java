@@ -8,7 +8,6 @@ import org.jose4j.jwk.RsaJwkGenerator;
 import org.jose4j.jws.AlgorithmIdentifiers;
 import org.jose4j.lang.JoseException;
 
-import java.security.interfaces.RSAPrivateKey;
 import java.util.Base64;
 import java.util.Calendar;
 import java.util.Map;
