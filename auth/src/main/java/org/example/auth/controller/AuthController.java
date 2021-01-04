@@ -60,4 +60,10 @@ public class AuthController {
         keys.setKeys(keyList);
         return keys;
     }
+
+    @GetMapping("/authority")
+    public String authority(String token){
+        log.info("=====进行用户权限校验=====\n token:{}",token);
+        return "true";
+    }
 }
