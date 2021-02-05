@@ -13,7 +13,7 @@ fi
 #遍历所有的项目
 for file in `ls $DIR`
 do
-  if [ $file != ".."   -a  $file != "." -a  $file != "common" -a $file != "k8s"  -a  -d "$DIR/$file" ]
+  if [ $file != ".."   -a  $file != "." -a  $file = "auth" -a $file != "k8s" -a $file != "istio"  -a  -d "$DIR/$file" ]
   then
     jarDir="$DIR$file"
     imageName="tangbao203/$file"

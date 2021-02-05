@@ -7,8 +7,11 @@ spec:
   selector:
     matchLabels:
       app: student
+  #jwt认证规则
   jwtRules:
+      #jwt认证服务主机域名
     - issuer: auth-service.school
+      #jwt认证服务公钥地址
       jwksUri: http://auth-service.school:8000/auth/cert
 
 ---
@@ -18,14 +21,19 @@ metadata:
   name: student-authz-policy
   namespace: school
 spec:
+  #授权检查应用
   selector:
     matchLabels:
       app: student
+  #如果匹配如下规则则放行
   action: ALLOW
+  #匹配规则
   rules:
     - from:
         - source:
+            #来源请求账号(发行社+应用主题组成的）
             requestPrincipals: ["auth-service.school/test"]
       to:
         - operation:
+            #服务接收的请求方式为GET
             methods: ["GET"]

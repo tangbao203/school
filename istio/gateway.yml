@@ -1,4 +1,4 @@
-#添加istio入口
+#网关入口
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
@@ -6,15 +6,18 @@ metadata:
   namespace: istio-system
 spec:
   selector:
+    #接收入口流量应用
     app: istio-ingressgateway
 
+  #网关服务配置
   servers:
     - port:
         number: 80
         name: http
         protocol: HTTP
+      #当前网关服务主机域名(k8s里的service 名字)
       hosts:
-        - "istio-test.com"
+        - "istio-ingressgateway.istio-system"
 
 ---
 apiVersion: networking.istio.io/v1alpha3
@@ -23,21 +26,26 @@ metadata:
   name: httpbin-gateway-vs
   namespace: school
 spec:
+  #这个虚拟服务主机域名
   hosts:
-    - "istio-test.com"
+    - "istio-ingressgateway.istio-system"
+  #绑定的网关
   gateways:
     - httpbin-gateway.istio-system
+  #http路由策略
   http:
+    #匹配策略
     - match:
         - uri:
             prefix: /class
-
+      #流量路由具体目标位置
       route:
         - destination:
             port:
               number: 7000
             host: student-service
 
+    #请求认证相关路由
     - match:
         - uri:
             prefix: /auth
